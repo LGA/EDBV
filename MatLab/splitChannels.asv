@@ -21,7 +21,9 @@ resGreen(:,:) = max(min(255,resGreen(:,:)), 0);
 resBlue=input(:,:,3)-input(:,:,1);
 resBlue(:,:) = max(min(255,resBlue(:,:)), 0);
 imshow(resRed);
-uiwait;
+fileTypes = {'*.jpg;*.tif;*.png;*.gif','All Image Files';'*.*','All Files' };
+
+[FileName,PathName] = uigetfile(fileTypes, 'File Selector');
 
 resGrey = input;
 resGrey = resGrey(:,:,1)*0.299+resGrey(:,:,2)*0.587+resGrey(:,:,3)*0.114;
