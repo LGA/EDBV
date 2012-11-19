@@ -9,13 +9,10 @@ function[resY, resX] = sobelGradient(input)
 % resY      ... sobel gradien in y-direction
 % resX      ... sobel gradien in x-direction
 
-Gx=[-1  0  1; -2  0  2; -1  0  1];
-Gy=[-1 -2 -1;  0  0  0;  1  2  1];
 
-inputD = im2double(input);
 
-resY=convolution(inputD, Gy);
-resX=convolution(inputD, Gx);
+resY=input;
+resX=input;
 
 
 end
