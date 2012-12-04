@@ -1,4 +1,16 @@
 function [cursor, path] = pledgeCursorShift(cursor, path, direction)
+% moves the center of the detection area, which acts as the cursor
+% of the detection algorithm
+% 
+% INPUT
+% cursor    ... (x,y) coord. of the area center
+% path      ... original image plus path
+% direction ... top, left, bottom, right
+
+% 
+% OUTPUT
+% cursor    ... (x,y) coord. of the area center
+% path      ... original image plus path
 
 
 % move cursor according to direction

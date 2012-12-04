@@ -1,17 +1,32 @@
-function [cursor, path, direction] = pledgeCursorShift(cursor, path, direction)
+function [cursor, path] = pledgeCursorShift(cursor, path, direction)
+% moves the center of the detection area, which acts as the cursor
+% of the detection algorithm
+% 
+% INPUT
+% cursor    ... (x,y) coord. of the area center
+% path      ... original image plus path
+% direction ... top, left, 
+
+% 
+% OUTPUT
+% cursor    ... binary image (1=corridor, 0=wall)
+% path      ... the path out - sketched onto original image
 
 
+% move cursor according to direction
 switch direction
     case 0
-        %cursor()
+        cursor(1,1)=cursor(1,1)-1;
     case 1
+        cursor(1,2)=cursor(1,2)+1;
     case 2
+        cursor(1,1)=cursor(1,1)+1;
     case 3
+        cursor(1,2)=cursor(1,2)-1;
 end
             
 
-% add pixel to path
-%input(cursor(1,1),cursor(1,2),1)
-
+% add pixel to path (painting it red)
+path([cursor(1,1)-1:cursor(1,1)],[cursor(1,2):cursor(1,2)+1],2:3)=0;
 
 end

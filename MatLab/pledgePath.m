@@ -15,7 +15,7 @@ function [path] = pledgePath(imgBinary, imgYSobel, imgXSobel, pathStart, pathEnd
 path = imgOri;
 
 % up=0, right=1, down=2, left=3
-direction=2;
+direction=0;
 
 % count turns
 counter=0;
@@ -27,6 +27,7 @@ cursor=pathStart;
 walkStraightFlag=true;  % alongside a wall or straight
 collisionFlag=false;    % is there a wall ahead
 foundExitFlag=false;    % have we found the exit
+wallEndedFlag=false;
 
 %disp(imgBinary);
 %uiwait;
@@ -36,18 +37,18 @@ while(foundExitFlag~=true)
 
     status=status+1;
     
-    if(walkStraightFlag)
-        [cursor, path] = pledgeCursorShift(cursor, path, direction);
-        collisionFlag = pledgeDetectCollision(cursor, imgBinary, direction);
-    else
-        
+    % move 'cursor' (detection-area) 1 px into current direction 
+    [cursor, path] = pledgeCursorShift(cursor, path, direction);
+    
+    % did we hit a wall
+    collisionFlag = pledgeDetectCollision(cursor, imgBinary, direction);
+    
+    % is there a wall that we should follow
+    if(walkStraightFlag==false)
+        wallEndedFlag = pledgeDetectWallEnded(cursor, imgBinary, direction);
     end
 
-
-    % found the exit ?
-   % if(pathEnd(1,1) < cursor(1,1) < pathEnd(2,1))
-   %     if(pathEnd(1,2) < cursor(1,2) < pathEnd(2,2))
-            
+    % check if an exit was found
     if(pathEnd(1,1) < cursor(1,1) && cursor(1,1) < pathEnd(2,1))
         if(pathEnd(1,2) < cursor(1,2) && cursor(1,2) < pathEnd(2,2))
             foundExitFlag=true;
@@ -55,17 +56,16 @@ while(foundExitFlag~=true)
         end
     end
     
+    [direction, counter, wallEndedFlag, collisionFlag, walkStraightFlag]=pledgeStrategy(direction, counter, wallEndedFlag, collisionFlag, walkStraightFlag);
     
-    if(collisionFlag)
-        foundExitFlag=true;
-        disp('Collision detected');
-    end
     
     % output current status every 50px
-    if(status==50)
-        imshow(path);
-        uiwait;
-        status=0;
+    if(mod(status,50) == 0)
+        %imshow(path);
+        %uiwait;
+        %if(status>2000)
+        %    break;
+        %end
     end
 end
 
