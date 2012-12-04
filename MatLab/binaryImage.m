@@ -8,12 +8,11 @@ function[imgBinary] = binaryImage(input)
 % imgBinary ... binary image
 
     % create a 0-filled matrix in the size of the image
-    imgBinary=[0 0; 0 0];
+    imgBinary=0;
     imgBinary=repmat(imgBinary,size(input));
-    threshold=127;
+    threshold=0.25;
     
     % set all cells greate than the threshold to 1
     imgBinary(input > threshold) = 1;
 
-        
 end

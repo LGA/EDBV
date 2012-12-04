@@ -1,0 +1,17 @@
+function [cursor, path, direction] = pledgeCursorShift(cursor, path, direction)
+
+
+switch direction
+    case 0
+        %cursor()
+    case 1
+    case 2
+    case 3
+end
+            
+
+% add pixel to path
+%input(cursor(1,1),cursor(1,2),1)
+
+
+end

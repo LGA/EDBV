@@ -10,7 +10,7 @@ clear global;
 clc;
 
 % flag for debug output
-debug = 1;
+debug = 0;
 
 fileTypes = {'*.jpg;*.tif;*.png;*.gif','All Image Files';'*.*','All Files' };
 
@@ -18,12 +18,26 @@ fileTypes = {'*.jpg;*.tif;*.png;*.gif','All Image Files';'*.*','All Files' };
 
 
 disp(['Try to open file: ' PathName FileName])
-imgOri = imread([PathName FileName]);
+
+
+%convert gif files
+if(isempty(regexpi(FileName, '.gif'))~=true)
+    [imgOri, cmap] = imread([PathName FileName]);
+    imgOri = ind2rgb(imgOri, cmap);
+else
+    imgOri = imread([PathName FileName]);
+end
+
 imgPath = imgOri;
+
 
 
 % split color-channels (R, G, Grey) and find path-start
 [imgRed, imgGreen, imgGrey, pathStart] = splitChannels(imgOri);
+
+% find exit of maze
+pathEnd = findMazeExit(imgGreen);
+
 
 if debug==1  
     subplot(1,3,1);
@@ -43,8 +57,8 @@ end
 
 
 % optimize greyscale-image
-[imgGrey] = highContrastGrey(imgGrey);
-
+% Rundet die Kanten ab & erschwert dadurch die Findung des Pfades
+%[imgGrey] = highContrastGrey(imgGrey);
 
 % create binary-image
 [imgBinary] = binaryImage(imgGrey);
@@ -66,7 +80,7 @@ if debug==1
 end
 
 % plegde -> finding the actual way
-[imgPath] = pledgePath(imgBinary, imgYSobel, imgXSobel, pathStart, imgGreen, imgOri);
+[imgPath] = pledgePath(imgBinary, imgYSobel, imgXSobel, pathStart, pathEnd, imgGreen, imgOri);
 
 
 % output of the result
