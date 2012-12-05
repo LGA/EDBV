@@ -60,8 +60,9 @@ while(foundExitFlag~=true)
     
     
     % output current status every 50px
-    if(mod(status,50) == 0)
-        %imshow(path);
+    if(mod(status,25) == 0)
+        imshow(path);
+        pause(0.03);
         %uiwait;
         %if(status>2000)
         %    break;

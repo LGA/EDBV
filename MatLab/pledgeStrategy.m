@@ -10,6 +10,10 @@ function [direction, counter, wallEndedFlag, collisionFlag, walkStraightFlag] = 
 % OUTPUT
 % equals INPUT
 
+        if(counter==0)
+            walkStraightFlag=true;
+        end
+
 % wall hit, just turn right
 if(collisionFlag==true)
 
@@ -32,11 +36,15 @@ else
         wallEndedFlag=false;
         counter=counter-1;
         
+            
         if(direction==0)
             direction=3;
         else
             direction=direction-1;
         end
+        
+
+        
         
         %{
         switch direction
