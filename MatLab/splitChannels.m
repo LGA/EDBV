@@ -12,19 +12,35 @@ function[resRed, resGreen, resGrey, pathStart] = splitChannels(input)
 % resGrey   ... greyscale image
 % pathStart ... (x,y)-coordinates of the starting-point
 
+si = size(input);
+output = zeros(si(1),si(2));
+for i = 1:si(1)
+    for j = 1:si(2)
+        if(input(i, j, 1) > input(i, j, 2)+35 && input(i, j, 1) > input(i, j, 3)+35)
+            output(i,j) = 255;
+        end
+    end
+end
 
+resRed=output;
+output = zeros(si(1),si(2));
+for i = 1:si(1)
+    for j = 1:si(2)
+        if(input(i, j, 2) > input(i, j, 1)+35 && input(i, j, 2) > input(i, j, 3)+35)
+            output(i,j) = 255;
+        end
+    end
+end
+resGreen=output;
 
-resRed=input(:,:,1)-input(:,:,2);
-resRed(:,:) = max(min(255,resRed(:,:)), 0);
-resGreen=input(:,:,2)-input(:,:,1);
-resGreen(:,:) = max(min(255,resGreen(:,:)), 0);
-resBlue=input(:,:,3)-input(:,:,1);
-resBlue(:,:) = max(min(255,resBlue(:,:)), 0);
+pos = [350, 378];
+finished(resGreen, pos)
 
 center = centroid(resRed);
-imshow(resRed);
+imshow(output);
 hold on;
 plot(center(2), center(1), 'o');
+plot(pos(2), pos(1), 'o');
 hold off;
 
 uiwait;
