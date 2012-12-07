@@ -30,14 +30,15 @@ else
 end
 
 imgPath = imgOri;
+imgMedian = imgOri;
 
-imgOri(:,:,1) = medianFilter(imgOri(:,:,1));
-imgOri(:,:,2) = medianFilter(imgOri(:,:,2));
-imgOri(:,:,3) = medianFilter(imgOri(:,:,3));
+imgMedian(:,:,1) = medianFilter(imgMedian(:,:,1));
+imgMedian(:,:,2) = medianFilter(imgMedian(:,:,2));
+imgMedian(:,:,3) = medianFilter(imgMedian(:,:,3));
 
 
 % split color-channels (R, G, Grey) and find path-start
-[imgRed, imgGreen, imgGrey, pathStart] = splitChannels(imgOri);
+[imgRed, imgGreen, imgGrey, pathStart] = splitChannels(imgMedian);
 
 % find exit of maze
 pathEnd = findMazeExit(imgGreen);
