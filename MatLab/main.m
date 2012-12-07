@@ -31,6 +31,9 @@ end
 
 imgPath = imgOri;
 
+imgOri(:,:,1) = medianFilter(imgOri(:,:,1));
+imgOri(:,:,2) = medianFilter(imgOri(:,:,2));
+imgOri(:,:,3) = medianFilter(imgOri(:,:,3));
 
 
 % split color-channels (R, G, Grey) and find path-start
