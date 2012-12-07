@@ -19,25 +19,25 @@ wallEndedFlag=false;
 
 switch direction
     case 0
-        area=imgBinary([cursor(1,1)-5:cursor(1,1)],cursor(1,2)-2);
+        area=imgBinary([cursor(1,1)-2:cursor(1,1)+2],cursor(1,2)-2);
         area=area.';
-        if( (mean(area)==1))
+        if( (mean(area(1,1:4))==1) && (area(1,5)==0) )
             wallEndedFlag=true;
         end
     case 1
-        area=imgBinary(cursor(1,1)-2,[cursor(1,2):cursor(1,2)+5]);
-        if( (mean(area)==1) )
+        area=imgBinary(cursor(1,1)-2,[cursor(1,2)-2:cursor(1,2)+2]);
+        if( (mean(area(1,2:5))==1) && (area(1,1)==0) )
             wallEndedFlag=true;
         end
     case 2
-        area=imgBinary([cursor(1,1):cursor(1,1)+5],cursor(1,2)+2);
+        area=imgBinary([cursor(1,1)-2:cursor(1,1)+2],cursor(1,2)+2);
         area=area.';
-        if( (mean(area)==1) )
+        if( (mean(area(1,2:5))==1) && (area(1,1)==0) )
             wallEndedFlag=true;
         end
     case 3
-        area=imgBinary(cursor(1,1)+2,[cursor(1,2)-5:cursor(1,2)]);
-        if( (mean(area)==1) )
+        area=imgBinary(cursor(1,1)+2,[cursor(1,2)-2:cursor(1,2)+2]);
+        if( (mean(area(1,1:4))==1) && (area(1,5)==0) )
             wallEndedFlag=true;
         end
 end
