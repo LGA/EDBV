@@ -1,0 +1,13 @@
+function[threshold] = goodThreshold(input)
+
+intinput = uint8(input*255);
+hist = zeros(1, 256);
+for i=intinput(:,:)
+    hist(1, i+1)=hist(1, i+1)+1;
+end
+hist
+for i=1:256
+    
+end
+threshold = histmean(hist);
+end

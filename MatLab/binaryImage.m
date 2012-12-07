@@ -9,7 +9,7 @@ function[imgBinary] = binaryImage(input)
 
     % create a 0-filled matrix in the size of the image
     imgBinary=zeros(size(input));
-    threshold=0.5;
+    threshold=goodThreshold(input);
     
     % set all cells greate than the threshold to 1
     imgBinary(input > threshold) = 1;
