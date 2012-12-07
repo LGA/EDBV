@@ -12,9 +12,6 @@ function[resGrey] = highContrastGrey(input)
 
  % average filter
  input = averageFilter(input);
- 
- % median filter
-% input = medianFilter(input);
 
 
 
