@@ -3,14 +3,19 @@
 
 function main()
 
+% flag for debug output
+debug = 0;
+
+% flag for animation
+animate = 1;
+
 
 % clear output, read the inputfile and create the outputfile
 close all;
 clear global;
 clc;
 
-% flag for debug output
-debug = 0;
+
 
 fileTypes = {'*.jpg;*.tif;*.png;*.gif','All Image Files';'*.*','All Files' };
 
@@ -71,7 +76,7 @@ end
 
 % sobel
 [imgYSobel imgXSobel] = sobelGradient(imgGrey);
-debug = 1;
+
 if debug==1  
     subplot(1,2,1);
     imshow(imgYSobel);
@@ -88,7 +93,7 @@ if debug==1
 end
 
 % plegde -> finding the actual way
-[imgPath] = pledgePath(imgBinary, imgYSobel, imgXSobel, pathStart, pathEnd, imgGreen, imgOri);
+[imgPath] = pledgePath(imgBinary, imgYSobel, imgXSobel, pathStart, pathEnd, imgGreen, imgOri, animate);
 
 
 % output of the result

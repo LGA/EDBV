@@ -28,7 +28,7 @@ end
 % move from center to left-border until green ends
 while(run)
     pathEnd(1,2)=pathEnd(1,2)-1;
-    if((imgGreen(pathEnd(2,1), pathEnd(1,2)) == 0) || (pathEnd(1,2) == 1))
+    if((imgGreen(pathEnd(2,1), pathEnd(1 ,2)) == 0) || (pathEnd(1,2) == 1))
         break;
     end
 end

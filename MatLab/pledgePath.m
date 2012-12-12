@@ -1,4 +1,4 @@
-function [path] = pledgePath(imgBinary, imgYSobel, imgXSobel, pathStart, pathEnd, imgGreen, imgOri)
+function [path] = pledgePath(imgBinary, imgYSobel, imgXSobel, pathStart, pathEnd, imgGreen, imgOri, animate)
 % claculates the way throgh the maze with the algorithm of Pledge
 % 
 % INPUT
@@ -59,8 +59,8 @@ while(foundExitFlag~=true)
     [direction, counter, wallEndedFlag, collisionFlag, walkStraightFlag]=pledgeStrategy(direction, counter, wallEndedFlag, collisionFlag, walkStraightFlag);
     
     
-    % output current status every 50px
-    if(mod(status,70) == 0)
+    % output current status every 70px
+    if((mod(status,70) == 0) && (animate==1))
         imshow(path);
         pause(0.03);
         %uiwait;

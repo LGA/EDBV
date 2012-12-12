@@ -23,8 +23,8 @@ for i = 1:si(1)
 end
 
 resRed=output;
-imshow(output);
-uiwait;
+%imshow(output);
+%uiwait;
 output = zeros(si(1),si(2));
 for i = 1:si(1)
     for j = 1:si(2)
@@ -36,11 +36,11 @@ end
 resGreen=output;
 
 center = centroid(resRed);
-imshow(output);
-hold on;
-plot(center(2), center(1), 'o');
-hold off;
-uiwait;
+%imshow(output);
+%hold on;
+%plot(center(2), center(1), 'o');
+%hold off;
+%uiwait;
 
 
 resGrey = input;

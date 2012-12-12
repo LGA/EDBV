@@ -43,20 +43,6 @@ else
             direction=direction-1;
         end
         
-
-        
-        
-        %{
-        switch direction
-            case 0
-                
-            case 1
-                
-            case 2
-                
-            case 3
-        end
-        %}
     end
 end
 
