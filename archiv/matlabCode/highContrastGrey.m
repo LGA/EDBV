@@ -1,0 +1,23 @@
+function[resGrey] = highContrastGrey(input)
+
+% optimizes the contrast in the greyscale to make 
+% distinction between walls and corridors easier
+%
+% INPUT
+% input     ... the greyscale-version of the original image (double)
+%
+% OUTPUT
+% resGrey   ... the optimized greyscale-version
+
+
+ % average filter
+ input = averageFilter(input);
+ 
+ % median filter
+% input = medianFilter(input);
+
+
+
+ % do histogram equalization
+ resGrey = histogramequalization(input);
+end
