@@ -4,7 +4,7 @@
 function main()
 
 % flag for debug output
-debug = 0;
+debug = 1;
 
 % flag for animation
 animate = 1;
