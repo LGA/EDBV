@@ -30,4 +30,11 @@ end
 path([cursor(1,1)-1:cursor(1,1)],[cursor(1,2):cursor(1,2)+1],2:3)=0;
 path([cursor(1,1)-1:cursor(1,1)],[cursor(1,2):cursor(1,2)+1],1)=255;
 
+pxpath=true;
+
+if(pxpath) 
+    path([cursor(1,1)-1:cursor(1,1)],[cursor(1,2):cursor(1,2)+2],2:3)=0;
+    path([cursor(1,1)-1:cursor(1,1)],[cursor(1,2):cursor(1,2)+2],1)=255;
+end
+
 end
